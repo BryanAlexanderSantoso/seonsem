@@ -2,47 +2,33 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 
 const portfolioItems = [
   {
     id: 1,
-    title: "E-Commerce Fashion",
-    category: "Web Development",
-    description: "Website e-commerce dengan fitur lengkap untuk brand fashion lokal",
-    image: "/portfolio-1.jpg",
+    title: "How Seonsem achieved a 310% growth for E-Commerce Fashion",
+    subtitle: "Membantu brand fashion lokal mengoptimalkan konversi dan visibilitas di Google melalui strategi SEO yang terintegrasi.",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80",
     link: "/portofolio/ecommerce-fashion",
-    tags: ["Next.js", "E-Commerce", "Payment Gateway"],
+    stats: [
+      { label: "ROI increase over 3 years", value: "310%", color: "bg-orange-500" },
+      { label: "In value due to increased team productivity", value: "$121k", color: "bg-blue-500" },
+      { label: "Saved due to reduced administration time", value: "410%", color: "bg-cyan-400" },
+    ]
   },
   {
     id: 2,
-    title: "Company Profile Tech Startup",
-    category: "Web Development",
-    description: "Website company profile modern untuk startup teknologi",
-    image: "/portfolio-2.jpg",
+    title: "Boosting Tech Startup Authority in Competitive Market",
+    subtitle: "Transformasi digital menyeluruh untuk startup teknologi, meningkatkan kepercayaan investor dan pengguna.",
+    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&q=80",
     link: "/portofolio/tech-startup",
-    tags: ["React", "Company Profile", "Animation"],
-  },
-  {
-    id: 3,
-    title: "SEO Project - Klinik Kesehatan",
-    category: "SEO",
-    description: "Optimasi SEO untuk klinik kesehatan, dari halaman 5 ke halaman 1",
-    image: "/portfolio-3.jpg",
-    link: "/portofolio/klinik-seo",
-    tags: ["SEO", "Healthcare", "Local SEO"],
-  },
-  {
-    id: 4,
-    title: "Landing Page SaaS",
-    category: "Web Development",
-    description: "Landing page dengan konversi tinggi untuk produk SaaS",
-    image: "/portfolio-1.jpg",
-    link: "/portofolio/saas-landing",
-    tags: ["Landing Page", "SaaS", "Conversion"],
+    stats: [
+      { label: "User Acquisition Growth", value: "250%", color: "bg-emerald-500" },
+      { label: "Organic Search Visibility", value: "5x", color: "bg-purple-500" },
+      { label: "Cost Per Acquisition Reduced", value: "60%", color: "bg-rose-500" },
+    ]
   },
 ]
 
@@ -58,106 +44,111 @@ export function PortfolioSection() {
   }
 
   return (
-    <section className="py-20 lg:py-32 relative overflow-hidden">
+    <section className="py-20 lg:py-32 relative overflow-hidden bg-black text-white">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12"
-        >
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div className="space-y-4">
-            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full">
+            <span className="inline-block px-4 py-1.5 bg-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest rounded-full">
               Portfolio
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
               Our Recent Work
             </h2>
           </div>
 
-          {/* Navigation */}
           <div className="flex items-center gap-3">
             <button
               onClick={prevSlide}
-              className="p-3 rounded-full bg-secondary border border-border hover:border-primary/50 transition-colors"
+              className="p-3 rounded-full bg-zinc-900 border border-zinc-800 hover:border-blue-500 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextSlide}
-              className="p-3 rounded-full bg-secondary border border-border hover:border-primary/50 transition-colors"
+              className="p-3 rounded-full bg-zinc-900 border border-zinc-800 hover:border-blue-500 transition-colors"
             >
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>
-        </motion.div>
+        </div>
 
         {/* Portfolio Slider */}
-        <div className="relative overflow-hidden">
-          <motion.div
-            className="flex gap-6"
-            animate={{ x: `-${currentIndex * (100 / 3)}%` }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          >
-            {portfolioItems.map((item) => (
+        <div className="relative">
+          <div className="flex gap-6 overflow-hidden">
+            <AnimatePresence mode="wait">
               <motion.div
-                key={item.id}
-                className="min-w-[calc(33.333%-16px)] lg:min-w-[calc(33.333%-16px)] shrink-0"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                key={currentIndex}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.5 }}
+                className="w-full"
               >
-                <Link href={item.link} className="group block">
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-border mb-4">
-                    {/* Portfolio Image */}
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                <div className="relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[21/9] min-h-[400px] flex items-center">
+                  {/* Background Image & Overlay */}
+                  <div className="absolute inset-0 z-0">
+                    <img
+                      src={portfolioItems[currentIndex].image}
+                      alt={portfolioItems[currentIndex].title}
+                      className="w-full h-full object-cover opacity-40"
                     />
-
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <div className="flex items-center gap-2 text-primary">
-                        <span className="font-medium">View Project</span>
-                        <ExternalLink className="w-4 h-4" />
-                      </div>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
                   </div>
 
-                  <div className="space-y-2">
-                    <span className="text-xs text-primary font-medium">{item.category}</span>
-                    <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2">
-                      {item.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {item.tags.map((tag, i) => (
-                        <span
-                          key={i}
-                          className="px-2 py-1 text-xs bg-secondary rounded-md text-muted-foreground"
-                        >
-                          {tag}
-                        </span>
+                  <div className="relative z-10 w-full px-8 lg:px-16 grid lg:grid-cols-2 gap-12 items-center">
+                    {/* Left Content */}
+                    <div className="space-y-6">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                        {portfolioItems[currentIndex].title}
+                      </h3>
+                      <p className="text-zinc-400 text-sm md:text-base max-w-md leading-relaxed">
+                        {portfolioItems[currentIndex].subtitle}
+                      </p>
+                      
+                      <Link 
+                        href={portfolioItems[currentIndex].link}
+                        className="inline-flex items-center gap-2 text-white font-bold group border-b-2 border-zinc-700 pb-1 hover:border-blue-500 transition-all"
+                      >
+                        Read case study
+                        <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      </Link>
+                    </div>
+
+                    {/* Right Stats */}
+                    <div className="space-y-8">
+                      {portfolioItems[currentIndex].stats.map((stat, i) => (
+                        <div key={i} className="flex items-start gap-4">
+                          <div className={`w-1 h-12 rounded-full ${stat.color}`} />
+                          <div className="space-y-1">
+                            <div className="text-2xl md:text-3xl font-black text-white leading-none">
+                              {stat.value}
+                            </div>
+                            <div className="text-xs md:text-sm text-zinc-400 max-w-[200px]">
+                              {stat.label}
+                            </div>
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>
-                </Link>
+                </div>
               </motion.div>
-            ))}
-          </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
 
-        {/* View All */}
-        <div className="text-center mt-12">
-          <Button asChild variant="outline" size="lg">
-            <Link href="/portofolio">View All Projects</Link>
-          </Button>
+        {/* Indicators */}
+        <div className="flex justify-center gap-2 mt-12">
+          {portfolioItems.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`w-12 h-1 rounded-full transition-all ${
+                i === currentIndex ? "bg-blue-500" : "bg-zinc-800"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
