@@ -2,13 +2,11 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { X, ChevronRight } from "lucide-react"
 import Link from "next/link"
 
 export function PromoFlyer() {
   const [isVisible, setIsVisible] = useState(false)
-  const [timeLeft, setTimeLeft] = useState({ hours: 47, minutes: 59, seconds: 59 })
 
   useEffect(() => {
     // Show flyer after 2 seconds
@@ -21,25 +19,6 @@ export function PromoFlyer() {
 
     return () => clearTimeout(showTimer)
   }, [])
-
-  useEffect(() => {
-    if (!isVisible) return
-
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 }
-        } else if (prev.minutes > 0) {
-          return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
-        } else if (prev.hours > 0) {
-          return { hours: prev.hours - 1, minutes: 59, seconds: 59 }
-        }
-        return prev
-      })
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [isVisible])
 
   const handleClose = () => {
     setIsVisible(false)
@@ -54,39 +33,54 @@ export function PromoFlyer() {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: 100, opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="fixed bottom-28 right-6 z-50 w-[320px] glass rounded-2xl p-6 shadow-2xl"
+          className="fixed bottom-28 right-6 z-50 w-[280px] bg-white rounded-[24px] overflow-hidden shadow-2xl border border-zinc-100"
         >
+          {/* Close Button */}
           <button
             onClick={handleClose}
-            className="absolute top-3 right-3 p-1 text-muted-foreground hover:text-foreground transition-colors"
+            className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/40 transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
 
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-              Limited Offer
-            </div>
+          {/* Top Image Section */}
+          <div className="relative h-40">
+            <img 
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80" 
+              alt="Website Audit" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
             
-            <h3 className="text-xl font-bold text-foreground leading-tight">
-              Get a Free Website Audit & Consultation
-            </h3>
-            
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {"Dapatkan analisa mendalam tentang performa website Anda dan strategi untuk mengalahkan kompetitor di Google."}
-            </p>
-
-            <Button asChild className="w-full h-12 text-md font-bold shadow-lg shadow-primary/20">
-              <Link href="/konsultasi">Claim Now</Link>
-            </Button>
-
-            <div className="pt-2 border-t border-border flex items-center justify-between">
-              <span className="text-[10px] text-muted-foreground font-medium">OFFER EXPIRED AT:</span>
-              <span className="text-xs font-bold text-destructive">
-                48 Hours
+            {/* Badge Overlay */}
+            <div className="absolute bottom-4 left-4">
+              <span className="px-3 py-1 bg-black text-white text-[10px] font-black uppercase tracking-wider rounded-md">
+                Limited Offer
               </span>
             </div>
+          </div>
+
+          {/* Content Section */}
+          <div className="p-5 pt-2 space-y-4">
+            <div className="space-y-2">
+              <h3 className="text-lg font-bold text-zinc-900 leading-tight">
+                Get a Free Website Audit & Consultation
+              </h3>
+              <p className="text-xs text-zinc-500 leading-relaxed">
+                Let&apos;s analyze your current website and find growth opportunities...
+              </p>
+            </div>
+
+            <Link href="/konsultasi" className="group">
+              <div className="w-full h-12 bg-zinc-900 rounded-xl flex items-center justify-between px-5 text-white font-bold text-sm hover:bg-black transition-all">
+                <span>Claim Now</span>
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            <p className="text-center text-[10px] text-zinc-400 font-medium italic">
+              *Offer expires in 48 hours
+            </p>
           </div>
         </motion.div>
       )}
