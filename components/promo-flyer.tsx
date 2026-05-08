@@ -54,7 +54,7 @@ export function PromoFlyer() {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: 100, opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="fixed bottom-6 right-6 z-50 w-[320px] glass rounded-2xl p-6 shadow-2xl"
+          className="fixed bottom-28 right-6 z-50 w-[320px] glass rounded-2xl p-6 shadow-2xl"
         >
           <button
             onClick={handleClose}

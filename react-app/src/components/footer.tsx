@@ -33,18 +33,18 @@ const aiTools = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-card border-t border-border">
+    <footer className="relative overflow-hidden bg-zinc-950 text-zinc-100 border-t border-zinc-800">
       {/* AI CTA Banner */}
-      <div className="border-b border-border">
+      <div className="border-b border-zinc-800">
         <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-6 bg-gradient-to-r from-primary/10 via-card to-accent/10 rounded-2xl">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-6 bg-gradient-to-r from-primary/10 via-zinc-900 to-accent/10 rounded-2xl">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
                 <span className="text-xl gradient-text">AI</span>
               </div>
               <div>
-                <p className="font-medium text-foreground">Ask AI why Seonsem might be a fit for you</p>
-                <p className="text-sm text-muted-foreground">Get instant answers about our services</p>
+                <p className="font-medium text-zinc-100">Ask AI why Seonsem might be a fit for you</p>
+                <p className="text-sm text-zinc-400">Get instant answers about our services</p>
               </div>
             </div>
             <Link
@@ -66,21 +66,21 @@ export function Footer() {
             <Link to="/" className="inline-block">
               <span className="text-2xl font-bold gradient-text">Seonsem</span>
             </Link>
-            <p className="text-muted-foreground max-w-sm">
+            <p className="text-zinc-400 max-w-sm">
               Membantu bisnis Indonesia tumbuh melalui website profesional dan optimasi SEO yang terukur.
             </p>
             
             {/* Contact Info */}
             <div className="space-y-3">
-              <a href="mailto:hello@seonsem.com" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+              <a href="mailto:hello@seonsem.com" className="flex items-center gap-3 text-zinc-400 hover:text-zinc-100 transition-colors">
                 <Mail className="w-4 h-4" />
                 hello@seonsem.com
               </a>
-              <a href="tel:+6281234567890" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+              <a href="tel:+6281234567890" className="flex items-center gap-3 text-zinc-400 hover:text-zinc-100 transition-colors">
                 <Phone className="w-4 h-4" />
                 +62 812-3456-7890
               </a>
-              <div className="flex items-center gap-3 text-muted-foreground">
+              <div className="flex items-center gap-3 text-zinc-400">
                 <MapPin className="w-4 h-4" />
                 Jakarta, Indonesia
               </div>
@@ -88,7 +88,7 @@ export function Footer() {
 
             {/* AI Tools */}
             <div className="flex items-center gap-3">
-              <span className="text-xs text-muted-foreground">Powered by:</span>
+              <span className="text-xs text-zinc-400">Powered by:</span>
               <div className="flex gap-2">
                 {aiTools.map((tool) => (
                   <div
@@ -109,11 +109,11 @@ export function Footer() {
 
           {/* Links */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Layanan</h3>
+            <h3 className="font-semibold text-zinc-100 mb-4">Layanan</h3>
             <ul className="space-y-3">
               {footerLinks.layanan.map((link) => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link to={link.href} className="text-zinc-400 hover:text-zinc-100 transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -122,11 +122,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Perusahaan</h3>
+            <h3 className="font-semibold text-zinc-100 mb-4">Perusahaan</h3>
             <ul className="space-y-3">
               {footerLinks.perusahaan.map((link) => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link to={link.href} className="text-zinc-400 hover:text-zinc-100 transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -135,11 +135,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Resources</h3>
+            <h3 className="font-semibold text-zinc-100 mb-4">Resources</h3>
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link to={link.href} className="text-zinc-400 hover:text-zinc-100 transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -150,15 +150,15 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-border">
+      <div className="border-t border-zinc-800">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-400">
             <p>&copy; {new Date().getFullYear()} Seonsem.com. All rights reserved.</p>
             <div className="flex items-center gap-6">
-              <Link to="/privacy" className="hover:text-foreground transition-colors">
+              <Link to="/privacy" className="hover:text-zinc-100 transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="hover:text-foreground transition-colors">
+              <Link to="/terms" className="hover:text-zinc-100 transition-colors">
                 Terms of Service
               </Link>
             </div>

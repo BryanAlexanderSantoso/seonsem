@@ -2,62 +2,82 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 
 export function MidCTASection() {
+  const features = [
+    "Business-to-Business",
+    "Business-to-Customer",
+    "Nonprofit Organization",
+    "Ecommerce",
+  ]
+
   return (
-    <section className="py-20 lg:py-32 relative overflow-hidden">
+    <section className="py-20 lg:py-32 relative overflow-hidden bg-white dark:bg-zinc-950">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-3xl overflow-hidden"
+          className="relative rounded-3xl overflow-hidden bg-zinc-900 min-h-[450px] flex items-center shadow-2xl"
         >
-          {/* Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-card to-accent/20" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(99,102,241,0.2),transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.2),transparent_50%)]" />
+          {/* Background Overlay */}
+          <div className="absolute inset-0 bg-black/70 z-10" />
           
-          {/* Content */}
-          <div className="relative z-10 p-8 lg:p-16 text-center">
-            <div className="max-w-3xl mx-auto space-y-6">
-              <span className="inline-block px-4 py-1.5 bg-primary/20 text-primary text-sm font-medium rounded-full">
-                Saatnya Website Anda Bekerja untuk Bisnis Anda
-              </span>
-              
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance">
-                Jangan Biarkan Kompetitor Mengambil Pelanggan Anda di Google
-              </h2>
-              
-              <p className="text-lg text-muted-foreground">
-                Semakin lama Anda menunda optimasi, semakin banyak peluang yang hilang.
-              </p>
+          {/* Background Image (Blurred Office) */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ 
+              backgroundImage: 'url("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80")',
+              filter: 'brightness(0.3)'
+            }}
+          />
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <Button size="lg" asChild className="group">
-                  <Link href="/konsultasi">
-                    Konsultasi Gratis Sekarang
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link href="/kontak">Diskusikan Kebutuhan Website / SEO Anda</Link>
-                </Button>
+          <div className="container relative z-20 mx-auto px-6 lg:px-12 py-10">
+            <div className="grid lg:grid-cols-2 gap-10 items-center">
+              {/* Left Content */}
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                    Marketing Boost <br />
+                    <span className="text-primary">for Your Business</span>
+                  </h2>
+                  <p className="text-base md:text-lg text-zinc-300 max-w-lg leading-relaxed">
+                    The marketing audit is typically carried out by a third party, not an internal member of the organization.
+                  </p>
+                </div>
+
+                <div className="pt-2">
+                  <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-white border-none rounded-full px-10 shadow-lg shadow-primary/20">
+                    <Link href="/konsultasi">
+                      Get a Consultation
+                    </Link>
+                  </Button>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-y-3 gap-x-6 pt-4">
+                  {features.map((feature) => (
+                    <div key={feature} className="flex items-center gap-3 text-zinc-300">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full border border-primary/50 flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      </div>
+                      <span className="text-sm font-medium">{feature}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className="pt-8 border-t border-border/50 mt-8">
-                <p className="text-muted-foreground italic">
-                  Setiap bisnis punya kesempatan untuk berkembang.
-                  <br />
-                  Yang membedakan hanya satu:
-                  <br />
-                  <span className="text-foreground font-medium">
-                    apakah website Anda sudah bekerja... atau hanya sekadar online?
-                  </span>
-                </p>
+              {/* Right Image */}
+              <div className="hidden lg:block relative h-full">
+                <div className="absolute -right-20 -bottom-32 w-[550px] h-[550px]">
+                  <img
+                    src="/marketing-hero.png"
+                    alt="Marketing Professional"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
               </div>
             </div>
           </div>

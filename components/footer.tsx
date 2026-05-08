@@ -1,119 +1,77 @@
 "use client"
 
 import Link from "next/link"
-import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react"
+import { Instagram, Linkedin, Mail as MailIcon } from "lucide-react"
 
 const footerLinks = {
   layanan: [
     { label: "Pembuatan Website", href: "/layanan/pembuatan-website" },
-    { label: "Revamp Website", href: "/layanan/revamp-website" },
     { label: "Jasa SEO", href: "/layanan/jasa-seo" },
-    { label: "Website LPK", href: "/layanan/pembuatan-website-lpk" },
+    { label: "Revamp Website", href: "/layanan/revamp-website" },
+    { label: "Website Khusus LPK", href: "/layanan/pembuatan-website-lpk" },
   ],
   perusahaan: [
     { label: "Tentang Kami", href: "/tentang-kami" },
     { label: "Portofolio", href: "/portofolio" },
     { label: "Blog", href: "/blog" },
-    { label: "Kontak", href: "/kontak" },
-  ],
-  resources: [
-    { label: "Konsultasi Gratis", href: "/konsultasi" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms of Service", href: "/terms" },
   ],
 }
 
-const aiTools = [
-  { name: "Gemini", icon: "https://static.vecteezy.com/system/resources/previews/046/861/646/original/gemini-icon-on-a-transparent-background-free-png.png" },
+const aiIcons = [
   { name: "ChatGPT", icon: "https://tse3.mm.bing.net/th/id/OIP.MGwv0BQx9pJSCPJ4N2e2_AHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" },
+  { name: "Gemini", icon: "https://static.vecteezy.com/system/resources/previews/046/861/646/original/gemini-icon-on-a-transparent-background-free-png.png" },
   { name: "Claude", icon: "https://freepnglogo.com/images/all_img/claude-ai-icon-65aa.png" },
-  { name: "Grok", icon: "https://brandlogo.org/wp-content/uploads/2025/03/Grok-Logo-2025.png" },
+  { name: "Midjourney", icon: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.png" },
+  { name: "Dall-E", icon: "https://openai.com/favicon.ico" },
+  { name: "Makawa", icon: "https://cdn-icons-png.flaticon.com/512/2103/2103633.png" },
 ]
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-card border-t border-border">
-      {/* AI CTA Banner */}
-      <div className="border-b border-border">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-6 bg-gradient-to-r from-primary/10 via-card to-accent/10 rounded-2xl">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                <span className="text-xl gradient-text">AI</span>
-              </div>
-              <div>
-                <p className="font-medium text-foreground">Ask AI why Seonsem might be a fit for you</p>
-                <p className="text-sm text-muted-foreground">Get instant answers about our services</p>
-              </div>
+    <footer className="relative overflow-hidden bg-black text-white pt-20 border-t border-zinc-800">
+      <div className="container mx-auto px-4 pb-20 space-y-16">
+        {/* Ask AI Top Section */}
+        <div className="relative">
+          <div className="p-8 rounded-2xl border border-blue-500/20 bg-blue-500/5 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="space-y-2">
+              <h3 className="text-xl font-bold text-white">Ask AI</h3>
+              <p className="text-sm text-zinc-500">Ask AI why Seonsem might be a fit for you:</p>
             </div>
-            <Link
-              href="/konsultasi"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors"
-            >
-              Try Now
-              <ArrowUpRight className="w-4 h-4" />
+
+            <div className="flex flex-wrap gap-4">
+              {aiIcons.map((ai) => (
+                <div key={ai.name} className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 p-2 flex items-center justify-center hover:border-blue-500/50 transition-colors group cursor-pointer" title={ai.name}>
+                  <img src={ai.icon} alt={ai.name} className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all" />
+                </div>
+              ))}
+            </div>
+
+            <Link href="/konsultasi" className="inline-flex items-center px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold transition-all group shadow-lg shadow-blue-600/20">
+              Try Ask AI
+              <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
             </Link>
           </div>
         </div>
-      </div>
 
-      {/* Main Footer */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12">
-          {/* Brand */}
-          <div className="lg:col-span-2 space-y-6">
+        {/* Footer Links Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          {/* Brand & Tagline */}
+          <div className="space-y-6">
             <Link href="/" className="inline-block">
-              <span className="text-2xl font-bold gradient-text">Seonsem</span>
+              <span className="text-3xl font-bold tracking-tighter">SEONSEM</span>
             </Link>
-            <p className="text-muted-foreground max-w-sm">
-              Membantu bisnis Indonesia tumbuh melalui website profesional dan optimasi SEO yang terukur.
+            <p className="text-zinc-500 text-sm max-w-[280px] leading-relaxed">
+              Partner strategis transformasi digital yang fokus pada pertumbuhan bisnis nyata melalui website modern dan SEO terarah.
             </p>
-            
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <a href="mailto:hello@seonsem.com" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
-                <Mail className="w-4 h-4" />
-                hello@seonsem.com
-              </a>
-              <a href="tel:+6281234567890" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
-                <Phone className="w-4 h-4" />
-                +62 812-3456-7890
-              </a>
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <MapPin className="w-4 h-4" />
-                Jakarta, Indonesia
-              </div>
-            </div>
-
-            {/* AI Tools */}
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-muted-foreground">Powered by:</span>
-              <div className="flex gap-2">
-                {aiTools.map((tool) => (
-                  <div
-                    key={tool.name}
-                    className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors p-1.5"
-                    title={tool.name}
-                  >
-                    <img
-                      src={tool.icon}
-                      alt={tool.name}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Links */}
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Layanan</h3>
-            <ul className="space-y-3">
+          {/* Jasa & Layanan */}
+          <div className="space-y-6">
+            <h3 className="text-sm font-bold text-white">Jasa & Layanan</h3>
+            <ul className="space-y-4">
               {footerLinks.layanan.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                <li key={link.label}>
+                  <Link href={link.href} className="text-sm text-zinc-500 hover:text-white transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -121,12 +79,13 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Perusahaan</h3>
-            <ul className="space-y-3">
+          {/* Perusahaan */}
+          <div className="space-y-6">
+            <h3 className="text-sm font-bold text-white">Perusahaan</h3>
+            <ul className="space-y-4">
               {footerLinks.perusahaan.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                <li key={link.label}>
+                  <Link href={link.href} className="text-sm text-zinc-500 hover:text-white transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -134,36 +93,36 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Resources</h3>
-            <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Empty or Social column */}
+          <div className="space-y-6">
+            <h3 className="text-sm font-bold text-white">Connect</h3>
+            <div className="flex gap-4">
+               <Link href="#" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-blue-600 transition-colors">
+                 <Instagram className="w-5 h-5" />
+               </Link>
+               <Link href="#" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-blue-600 transition-colors">
+                 <Linkedin className="w-5 h-5" />
+               </Link>
+               <Link href="mailto:hello@seonsem.com" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-blue-600 transition-colors">
+                 <MailIcon className="w-5 h-5" />
+               </Link>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-border">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Seonsem.com. All rights reserved.</p>
-            <div className="flex items-center gap-6">
-              <Link href="/privacy" className="hover:text-foreground transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="hover:text-foreground transition-colors">
-                Terms of Service
-              </Link>
-            </div>
-          </div>
+      {/* Huge Background Text */}
+      <div className="relative w-full overflow-hidden select-none pointer-events-none pb-10">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-zinc-600 uppercase tracking-widest mb-4">
+           <span>© {new Date().getFullYear()} SEONSEM. All rights reserved.</span>
+           <div className="flex gap-8 pointer-events-auto">
+             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+           </div>
         </div>
+        <h2 className="text-[15vw] md:text-[20vw] font-black text-white leading-[0.8] tracking-tighter opacity-100 text-center w-full">
+          SEONSEM
+        </h2>
       </div>
     </footer>
   )
